@@ -21,6 +21,7 @@ class Graph:
 
 
 def simple(N):
+    """Generate a simple dataset where points are classified based on their x coordinate."""
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -30,6 +31,7 @@ def simple(N):
 
 
 def diag(N):
+    """Generate a dataset where points are classified based on their diagonal position."""
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -39,6 +41,7 @@ def diag(N):
 
 
 def split(N):
+    """Generate a dataset where points are classified based on their x coordinate, but one of the classes is split into two regions."""
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -48,6 +51,7 @@ def split(N):
 
 
 def xor(N):
+    """Generate a dataset where points are arranged in an XOR pattern."""
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -57,6 +61,7 @@ def xor(N):
 
 
 def circle(N):
+    """Generate a dataset where points are arranged in an inner and outer circle."""
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -67,19 +72,31 @@ def circle(N):
 
 
 def spiral(N):
+    """Generate a dataset where points are arranged in a spiral pattern."""
 
     def x(t):
         return t * math.cos(t) / 20.0
 
     def y(t):
         return t * math.sin(t) / 20.0
-    X = [(x(10.0 * (float(i) / (N // 2))) + 0.5, y(10.0 * (float(i) / (N //
-        2))) + 0.5) for i in range(5 + 0, 5 + N // 2)]
-    X = X + [(y(-10.0 * (float(i) / (N // 2))) + 0.5, x(-10.0 * (float(i) /
-        (N // 2))) + 0.5) for i in range(5 + 0, 5 + N // 2)]
+
+    X = [
+        (x(10.0 * (float(i) / (N // 2))) + 0.5, y(10.0 * (float(i) / (N // 2))) + 0.5)
+        for i in range(5 + 0, 5 + N // 2)
+    ]
+    X = X + [
+        (y(-10.0 * (float(i) / (N // 2))) + 0.5, x(-10.0 * (float(i) / (N // 2))) + 0.5)
+        for i in range(5 + 0, 5 + N // 2)
+    ]
     y2 = [0] * (N // 2) + [1] * (N // 2)
     return Graph(N, X, y2)
 
 
-datasets = {'Simple': simple, 'Diag': diag, 'Split': split, 'Xor': xor,
-    'Circle': circle, 'Spiral': spiral}
+datasets = {
+    "Simple": simple,
+    "Diag": diag,
+    "Split": split,
+    "Xor": xor,
+    "Circle": circle,
+    "Spiral": spiral,
+}
